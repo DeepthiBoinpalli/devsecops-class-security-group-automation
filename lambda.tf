@@ -33,7 +33,7 @@ data "aws_iam_policy_document" "policy" {
     sid       = "CreateAndPutLogs"
     effect    = "Allow"
     actions   = ["logs:CreateLogStream", "logs:PutLogEvents"]
-    resources = ["arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lamdba/${var.lambda_function_name}:*"]
+    resources = ["arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${var.lambda_function_name}:*"]
   }
 
   statement {
@@ -114,4 +114,11 @@ resource "aws_lambda_permission" "allow_cloudwatch_to_call_scheduler" {
   function_name = aws_lambda_function.lambda_function.function_name
   principal     = "events.amazonaws.com"
   source_arn    = aws_cloudwatch_event_rule.event_rule.arn
+}
+
+# CloudWatch log group
+resource "aws_cloudwatch_log_group" "cw-log-group" {
+  name              = "/aws/lambda/${var.lambda_function_name}"
+  retention_in_days = 30
+  tags              = var.tags
 }
