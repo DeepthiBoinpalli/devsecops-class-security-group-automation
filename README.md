@@ -1,6 +1,10 @@
 # devsecops-class-boto3-automation
 
-### Steps to deploy
+## Pre-reqs
+
+- Configure SNS topic before you test anything
+
+## Steps to deploy
 
 ```
 terraform init -reconfigure -input=false -backend-config="backend.tfconfig"
