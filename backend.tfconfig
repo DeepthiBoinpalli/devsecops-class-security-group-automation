@@ -1,0 +1,5 @@
+bucket         = "tek-terraform-state"
+key            = "lambda/sg-compliance.tfstate"
+region         = "us-east-1"
+encrypt        = true
+dynamodb_table = "dev-dynamo-terraform"
