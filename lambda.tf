@@ -33,7 +33,7 @@ data "aws_iam_policy_document" "policy" {
     sid       = "CreateAndPutLogs"
     effect    = "Allow"
     actions   = ["logs:CreateLogStream", "logs:PutLogEvents"]
-    resources = ["arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lamdba/${var.lambda_function_name}"]
+    resources = ["arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lamdba/${var.lambda_function_name}:*"]
   }
 
   statement {
